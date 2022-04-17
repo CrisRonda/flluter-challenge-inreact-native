@@ -2,7 +2,7 @@ import React from 'react';
 
 import { View, Text, FlatList } from 'react-native';
 
-import { useSlider } from '../../context/SliderContext';
+import { bannerRef, useSlider } from '../../context/SliderContext';
 import PlaceCard from './PlaceCard';
 import styles from './styles';
 
@@ -12,6 +12,7 @@ const Banner = () => {
     return (
         <View style={styles.root}>
             <FlatList
+                ref={bannerRef}
                 data={places}
                 keyExtractor={(place) => place.id}
                 horizontal

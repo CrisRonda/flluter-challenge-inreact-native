@@ -11,8 +11,7 @@ const styles = StyleSheet.create({
     image: {
         width: 60,
         aspectRatio: 1,
-        marginRight: 16,
-        color: 'rgba(255,255,255,0.8)'
+        marginRight: 16
     },
     cardTitle: {
         fontSize: 14,

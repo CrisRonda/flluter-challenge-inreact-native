@@ -1,30 +1,33 @@
 import React from 'react';
 
-import { FlatList, View, ImageBackground, Text } from 'react-native';
+import { FlatList, View, ImageBackground, Pressable, Text } from 'react-native';
 
-import { useSlider } from '../../context/SliderContext';
+import { listRef, useSlider } from '../../context/SliderContext';
 import styles from './styles';
 
 const Banner = () => {
-    const { places } = useSlider();
+    const { places, onPressPlace } = useSlider();
 
     return (
         <View style={styles.root}>
             <FlatList
+                ref={listRef}
                 data={places}
                 keyExtractor={(place) => `${place.id}-list`}
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => {
+                renderItem={({ item, index }) => {
                     return (
-                        <ImageBackground
-                            source={item.backgroundImage}
-                            style={[styles.card]}
-                            resizeMode="cover"
-                        >
-                            <View style={{ flex: 1 }} />
-                            <Text style={styles.name}>{item.name}</Text>
-                        </ImageBackground>
+                        <Pressable onPress={() => onPressPlace(index)}>
+                            <ImageBackground
+                                source={item.backgroundImage}
+                                style={[styles.card]}
+                                resizeMode="cover"
+                            >
+                                <View style={{ flex: 1 }} />
+                                <Text style={styles.name}>{item.name}</Text>
+                            </ImageBackground>
+                        </Pressable>
                     );
                 }}
             />
