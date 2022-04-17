@@ -1,18 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useContext, createContext } from 'react';
+import data from '../content/places';
 
 const SliderContext = createContext();
 
 const SliderProvider = ({ children }) => {
-    const [value, setValue] = React.useState(0);
+    const [currentPlace, setCurrentPlace] = useState(0);
+    const places = data.places;
+    const recomendations = data.recomendations;
 
-    const handleChange = (newValue) => {
-        setValue(newValue);
+    const onChangePlace = (index) => {
+        setCurrentPlace(Math.min(Math.max(index, 0), places.length - 1));
     };
 
     return (
-        <SliderContext.Provider value={{ value, handleChange }}>
+        <SliderContext.Provider
+            value={{ places, recomendations, onChangePlace }}
+        >
             {children}
         </SliderContext.Provider>
     );
