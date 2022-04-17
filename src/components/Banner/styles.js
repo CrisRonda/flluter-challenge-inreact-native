@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-    root: {}
+    root: { height: 430 }
 });
 
 export default styles;

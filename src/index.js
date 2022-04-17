@@ -6,10 +6,12 @@ import Recomendations from './components/Recomendations';
 
 export default function App() {
     return (
-        <View>
+        <>
             <Banner />
-            <ListPlaces />
+            <View style={{ zIndex: 400, backgroundColor: 'black' }}>
+                <ListPlaces />
+            </View>
             <Recomendations />
-        </View>
+        </>
     );
 }

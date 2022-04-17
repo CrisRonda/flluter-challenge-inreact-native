@@ -10,16 +10,18 @@ const Banner = () => {
     const { places } = useSlider();
 
     return (
-        <FlatList
-            data={places}
-            keyExtractor={(place) => place.id}
-            horizontal
-            // showsHorizontalScrollIndicator={false}
-            pagingEnabled
-            renderItem={({ item }) => {
-                return <PlaceCard {...item} />;
-            }}
-        />
+        <View style={styles.root}>
+            <FlatList
+                data={places}
+                keyExtractor={(place) => place.id}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                pagingEnabled
+                renderItem={({ item }) => {
+                    return <PlaceCard {...item} />;
+                }}
+            />
+        </View>
     );
 };
 

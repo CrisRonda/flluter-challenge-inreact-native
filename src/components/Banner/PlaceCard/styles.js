@@ -4,9 +4,8 @@ const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
     root: {
         width: width,
-        aspectRatio: 0.9,
-        backgroundColor: 'blue',
-        justifyContent: 'center',
+        aspectRatio: 0.45,
+        height: 400,
         alignItems: 'center'
     },
     baseImage: {
