@@ -6,13 +6,15 @@ const styles = StyleSheet.create({
         width: width,
         aspectRatio: 0.45,
         height: 400,
-        alignItems: 'center'
+        alignItems: 'center',
+        position: 'absolute'
     },
     baseImage: {
-        width: '100%',
+        width: '200%',
         position: 'absolute',
         top: 0,
-        resizeMode: 'cover'
+        resizeMode: 'cover',
+        transform: [{ scale: 1.5 }]
     },
     background: {
         zIndex: -100

@@ -14,23 +14,25 @@ const SliderProvider = ({ children }) => {
     const recomendations = data.recomendations;
 
     const onPressPlace = (index) => {
-        if (!bannerRef.current && !listRef.current) {
+        if (!listRef.current) {
             return;
         }
-        bannerRef.current.scrollToIndex({
-            animated: false,
-            index: index
-        });
+
         listRef.current.scrollToIndex({
             animated: true,
             index: index
         });
-        currentPlace.current = index;
+        setCurrentPlace(index);
     };
 
     return (
         <SliderContext.Provider
-            value={{ places, recomendations, onPressPlace }}
+            value={{
+                places,
+                recomendations,
+                onPressPlace,
+                currentPlace: places[currentPlace]
+            }}
         >
             {children}
         </SliderContext.Provider>
