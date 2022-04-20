@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import { useContext, createContext, createRef } from 'react';
+
 import data from '../content/places';
 
 const SliderContext = createContext();
@@ -16,7 +17,6 @@ const SliderProvider = ({ children }) => {
 
     const orderPlaces = (item) => {
         const index = listPlaces.findIndex((x) => x.id === item.id);
-
         const newList = [...listPlaces];
         const newCurrentPlace = newList[index];
         newList.splice(index, 1);

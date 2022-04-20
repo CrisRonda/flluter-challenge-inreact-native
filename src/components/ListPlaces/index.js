@@ -1,15 +1,17 @@
 import React from 'react';
 
-import { FlatList, View, ImageBackground, Pressable, Text } from 'react-native';
+import { FlatList, View } from 'react-native';
 
 import { listRef, useSlider } from '../../context/SliderContext';
+import CardPlace from '../CardPlace';
 import styles from './styles';
 
 const itemWidth = 120;
 const startScroll = (itemWidth * 3) / 4;
 
 const Banner = () => {
-    const { listPlaces, onPressPlace } = useSlider();
+    const { listPlaces } = useSlider();
+
     React.useEffect(() => {
         if (listRef.current)
             listRef.current.scrollToOffset({
@@ -27,7 +29,11 @@ const Banner = () => {
             <FlatList
                 ref={listRef}
                 data={listPlaces}
-                keyExtractor={(place) => `${place.id}-list`}
+                keyExtractor={({ id }, index) =>
+                    index === listPlaces.length - 1
+                        ? `${id}-${new Date().getTime()}`
+                        : id
+                }
                 pagingEnabled={true}
                 horizontal={true}
                 decelerationRate={0}
@@ -43,25 +49,10 @@ const Banner = () => {
                 //     onPressPlace(_index);
                 // }}
                 showsHorizontalScrollIndicator={false}
-                renderItem={CardPlace}
+                renderItem={({ item }) => <CardPlace item={item} />}
             />
         </View>
     );
 };
 
 export default Banner;
-
-const CardPlace = ({ item }) => {
-    return (
-        <Pressable onPress={() => onPressPlace(item)}>
-            <ImageBackground
-                source={item.backgroundImage}
-                style={[styles.card]}
-                resizeMode="cover"
-            >
-                <View style={{ flex: 1 }} />
-                <Text style={styles.name}>{item.name}</Text>
-            </ImageBackground>
-        </Pressable>
-    );
-};
