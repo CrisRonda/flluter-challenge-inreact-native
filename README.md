@@ -10,3 +10,12 @@ This challenge was inpireated by Diegoveloper but with a minor changes
 -   [x] Scroll Places
 -   [x] Animation in banner
 -   [x] Animation when select place
+-   [ ] Animation when scrolling - You can do it fork and add this animation it's rather easy 👾
+
+I await your pr with new animations 🤟🏼
+
+# Screenshot
+
+<img src="./screenshots/001.gif"
+     alt="IOS"
+     width="75%"/>
