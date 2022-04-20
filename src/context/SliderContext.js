@@ -11,18 +11,31 @@ export const currentPlace = createRef(0);
 const SliderProvider = ({ children }) => {
     const [currentPlace, setCurrentPlace] = useState(0);
     const places = data.places;
+    const [listPlaces, setListPlaces] = useState(places);
     const recomendations = data.recomendations;
 
-    const onPressPlace = (index) => {
-        if (!listRef.current) {
-            return;
-        }
+    const orderPlaces = (item) => {
+        const index = listPlaces.findIndex((x) => x.id === item.id);
 
-        listRef.current.scrollToIndex({
-            animated: true,
-            index: index
-        });
+        const newList = [...listPlaces];
+        const newCurrentPlace = newList[index];
+        newList.splice(index, 1);
+        setListPlaces([...newList, newCurrentPlace]);
+    };
+    const onPressPlace = (item) => {
+        const index = places.findIndex((x) => x.id === item.id);
+
+        //  This code is for scroll automatically to the place
+        // if (!listRef.current) {
+        //     return;
+        // }
+
+        // // listRef.current.scrollToIndex({
+        // //     animated: true,
+        // //     index: index
+        // // });
         setCurrentPlace(index);
+        orderPlaces(item);
     };
 
     return (
@@ -31,7 +44,8 @@ const SliderProvider = ({ children }) => {
                 places,
                 recomendations,
                 onPressPlace,
-                currentPlace: places[currentPlace]
+                currentPlace: places[currentPlace],
+                listPlaces
             }}
         >
             {children}
