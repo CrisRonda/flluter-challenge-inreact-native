@@ -1,10 +1,14 @@
-import App from './src';
 import SliderProvider from './src/context/SliderContext';
+import { NavigationContainer } from '@react-navigation/native';
+import 'react-native-gesture-handler';
+import MainStack from './src/navigation';
 
 export default () => {
     return (
         <SliderProvider>
-            <App />
+            <NavigationContainer>
+                <MainStack />
+            </NavigationContainer>
         </SliderProvider>
     );
 };
